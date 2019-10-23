@@ -1,5 +1,153 @@
 
-## 3.2.1 (5/10/18)
+## 4.1.3
+
+- feature: re enable & harden sysinfos feature
+- feature: `pm2 sysinfos` to display many infos about running system
+- chore: cleanup some unused files
+- chore: enforce node >= 8.10.0
+
+## 4.1.2
+
+- fix: temporarily disable system metrics retrieval
+
+## 4.1.1
+
+- fix: #4452 disable network collection metric
+
+## 4.1.0
+
+- fix: #4270 fix ANSI escape for `pm2 ls --watch`
+- fix: `pm2 start app.js -i 1` start app in cluster mode
+- fix: #4254 add HOST environment variable on pm2 serve
+- fix: #4267 Allow usernames in uid/gid/user again
+- fix: #4376 make process.send('ready') trigger sigint
+- fix: #4443 allow pm2-runtime to auto-exit even if modules are still running
+- fix: #4364 typos
+- fix: #4288 add 'max' type in typescript definition
+
+## 4.0.2
+
+- fix: #4450 do not open sysinfo window on Windows
+
+## 4.0.1
+
+- chore: switch Systeminfo logging to debug
+
+## 4.0.0
+
+- feat: make pm2 fully standalone with node embedded
+- feat: startup, npm, node system adaptation for standalone installs
+- feat: system information worker - retrieve:
+           - network I/O + latency
+           - disk I/O + space
+           - cpu usage + temperature
+           - memory usage
+           - intelligent display of information (e.g. display disks > 80% cpu usage)
+- feat: listing of docker container on host machine with independent pm2 list
+- feat: upgrade of Chokidar to 3.x - Massive CPU & RAM consumption improvements for watch feature
+- r&d: manage container like pm2 processes
+- feat: intelligent display of high loaded processes in an independent pm2 list
+- feat: #4224 --ignore-watch now accepts globs (@vaskevich)
+- feat: pm2 save --force allow to force save of empty process list
+- fix: pm2 monit dashboard without leaks
+- fix: pm2 register fixed
+- refactor/fix: pm2 listing systems refactoring
+- chore: remove old legacy code for < 8 Node.js versions
+- chore: make the repo lighter
+- chore: better display when pm2-runtime is linked to on-premise
+- chore: pm2 CLI refactoring #4391
+
+## 3.5.0
+
+- feat: #4220 #2941 #4196 improve pm2 serve for SPA - autoredirect requests to index.html if --spa
+- feat: on pm2 show <app>, display metric unit and divergent environment variables
+- feat: #4157 tweak systemd script to auto restart PM2 in case of crash failure
+- fix: #4212 on pm2 show, avoid crash when versioning comment is not present
+- fix: #4171 fix pm2 list when small screen
+- fix: #4197 fix pm2 unstartup for macOS
+- fix: #2764 in pm2 monit, only display log of selected application
+- fix: #2793 pm2 monit, rolling log buffer, avoid crash and performance issues
+- fix: #4060 do not emit online when application is errored
+- chore: remove nssocket in dependencies
+
+## 3.4.1
+
+- fix: allow pm2 register / pm2 monitor
+- fix: restore trace indicator
+
+## 3.4.0
+
+- use @pm2/io version 4
+- disable @pm2/io for node.js v4 and v5
+
+/!\ Warning, built-in custom metrics are not supported anymore on Node 4 and 5
+
+New builtin metrics when starting a Node.js application:
+- Heap Size
+- Heap Usage
+- Used Heap Size
+- Active Requests
+- Active handles
+- Event loop latency
+- Event loop latency p95
+- HTTP queries per minutes
+- HTTP Mean Latency
+- HTTP P95 Latency
+
+## 3.3.1 (18/02/19)
+
+- add pm2 profile:cpu [timeout]
+- add pm2 profile:mem [timeout]
+
+## 3.3.0 (14/02/19)
+
+- Upgrade pmx to ^3
+
+## 3.2.9 (17/01/19)
+
+- #4128 fix: force detached process
+
+## 3.2.6-8 (11/01/19)
+
+- rollback: node bin path handling adaptation
+
+## 3.2.5 (09/01/19)
+
+- feat: enhance pm2 report
+- feat: support snap Ubuntu system
+- fix: pm2 register/monitor command
+- fix: consolidate spawn function on unhealthy systems to avoid pm2 crash
+- fix: error message if extra lang interpreter are not installed when runing tests
+- fix: (pm2 deploy) command line bug when passing env variables to post-deploy hook
+- fix: (pm2 deploy) always deploy to default branch problem
+- fix: (pm2 deploy) pm2 deploy <env> exec now accept multiple commands
+- fix: print full env + skip extra internal fields when using programmatic pm2
+
+## 3.2.4 (19/12/18)
+
+### Feat
+
+- display cron configuration when doing `pm2 desc <id>`
+- refactor test suite (benchmark/simplification)
+
+### Fix
+
+- pm2 flush <app> flush only one app
+- resolve uid properly on pm2 ls / pm2 desc
+- keep wait_ready option on process reload
+- keep stringification of environment variable behavior
+- return an error when using pm2 api on starting json configuration if one app is errored
+
+## 3.2.3 (4/12/18)
+
+### Fix
+
+- medium rare bug: fix issue when acting on process file (#3987 + #3192)
+- concurrent action to 1 if acting on only 2 processes
+- fix cluster syntax
+- add more test on port release
+
+## 3.2.2 (5/10/18)
 
 ### Fix
 
@@ -1085,7 +1233,7 @@
 - #2631 new pm2 monit command (blessed dashboard!)
 - #2670 allow to expose a folder over http via `pm2 serve <path> <port>`
 - #2617 fix startup script generation on macosx (launchd)
-- #2650 new option to append env name to app name (used to allow the same app to be launched in different environement w/o name conflict)
+- #2650 new option to append env name to app name (used to allow the same app to be launched in different environment w/o name conflict)
 - #2671 allow to pass a delay to pm2-docker (`pm2-docker process.json --delay 10`)
 - `pm2 ecosystem simple` to generate a simple ecosystem file
 - aliasing: `pm2-dev <script>` <=> `pm2-dev start <script>`

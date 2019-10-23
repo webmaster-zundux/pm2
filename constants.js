@@ -25,8 +25,8 @@ var csts = {
   PREFIX_MSG_WARNING      : chalk.yellow('[PM2][WARN] '),
   PREFIX_MSG_SUCCESS      : chalk.cyan('[PM2] '),
 
-  PM2_IO_MSG : chalk.cyan('[PM2 I/O] '),
-  PM2_IO_MSG_ERR : chalk.red('[PM2 I/O] '),
+  PM2_IO_MSG : chalk.cyan('[PM2 I/O]'),
+  PM2_IO_MSG_ERR : chalk.red('[PM2 I/O]'),
 
   TEMPLATE_FOLDER         : p.join(__dirname, 'lib/templates'),
 
@@ -44,7 +44,7 @@ var csts = {
   ERROR_EXIT              : 1,
   CODE_UNCAUGHTEXCEPTION  : 1,
 
-  IS_WINDOWS              : (process.platform === 'win32' || process.platform === 'win64'),
+  IS_WINDOWS              : (process.platform === 'win32' || process.platform === 'win64' || /^(msys|cygwin)$/.test(process.env.OSTYPE)),
   ONLINE_STATUS           : 'online',
   STOPPED_STATUS          : 'stopped',
   STOPPING_STATUS         : 'stopping',
@@ -58,10 +58,10 @@ var csts = {
 
   LOW_MEMORY_ENVIRONMENT  : process.env.PM2_OPTIMIZE_MEMORY || false,
 
-  MACHINE_NAME            : process.env.INSTANCE_NAME || process.env.MACHINE_NAME,
+  MACHINE_NAME            : process.env.INSTANCE_NAME || process.env.MACHINE_NAME || process.env.PM2_MACHINE_NAME,
   SECRET_KEY              : process.env.KEYMETRICS_SECRET || process.env.PM2_SECRET_KEY || process.env.SECRET_KEY,
   PUBLIC_KEY              : process.env.KEYMETRICS_PUBLIC || process.env.PM2_PUBLIC_KEY || process.env.PUBLIC_KEY,
-  KEYMETRICS_ROOT_URL     : process.env.KEYMETRICS_NODE || process.env.ROOT_URL || process.env.INFO_NODE || 'root.keymetrics.io',
+  KEYMETRICS_ROOT_URL     : process.env.KEYMETRICS_NODE || process.env.PM2_APM_ADDRESS || process.env.ROOT_URL || process.env.INFO_NODE || 'root.keymetrics.io',
 
 
   PM2_BANNER       : '../lib/motd',

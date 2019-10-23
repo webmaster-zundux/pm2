@@ -3,8 +3,6 @@
 SRC=$(cd $(dirname "$0"); pwd)
 source "${SRC}/../include.sh"
 
-echo -e "\033[1mRunning tests:\033[0m"
-
 cd $file_path
 
 function getInterpreter() {
@@ -18,7 +16,7 @@ $pm2 start `type -p watch` -- ls
 
 OUT=$(getInterpreter)
 
-[ $OUT = "none" ] || fail "$1"
+[ $OUT="none" ] || fail "$1"
 success "$1"
 
 $pm2 kill
